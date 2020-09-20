@@ -1,0 +1,63 @@
+###
+GET {{host}}/api/cities?page=0&size=2&sort=name,desc
+#&criteria=coordinates.x,273,LESS_THAN
+
+###
+GET {{host}}/api/cities/car-code/1000/count
+
+###
+GET {{host}}/api/cities/name/starts-with/a
+
+###
+GET {{host}}/api/cities/government/greater-than/DESPOTISM
+
+###
+GET {{host}}/api/cities/2
+
+###
+POST {{host}}/api/cities
+Content-Type: application/json
+
+{
+  "name": "abcedef",
+  "area": 1,
+  "population": 10000,
+  "metersAboveSeaLevel": 100,
+  "carCode": 1000,
+  "agglomeration": 15.0,
+  "government": "OLIGARCHY",
+  "coordinates": {
+    "x": 273,
+    "y": 100
+  },
+  "governor": {
+    "height": 100,
+    "birthday": "1990-09-19"
+  }
+}
+
+###
+PUT {{host}}/api/cities
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "2",
+  "area": 1,
+  "population": 1,
+  "metersAboveSeaLevel": 100,
+  "carCode": 1000,
+  "agglomeration": 15.0,
+  "government": "OLIGARCHY",
+  "coordinates": {
+    "x": 273,
+    "y": 100
+  },
+  "governor": {
+    "height": 100,
+    "birthday": "1990-09-19"
+  }
+}
+
+###
+DELETE {{host}}/api/cities/2

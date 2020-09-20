@@ -1,0 +1,48 @@
+<app-city-form #cityForm (citySaved)="citySaved($event)"></app-city-form>
+<div class="container-fluid d-flex flex-column justify-content-center text-center p-4">
+  <ng-container *ngTemplateOutlet="filterOrderTabs"></ng-container>
+<!--  <div>-->
+<!--    <hr/>-->
+<!--  </div>-->
+<!--  <ng-container *ngTemplateOutlet="pagination"></ng-container>-->
+
+  <app-cities-table
+    [cities]="cities"
+    (deleteCityClick)="deleteCity($event)"
+    (editCityClick)="editCity($event)"
+  ></app-cities-table>
+
+  <ng-container *ngTemplateOutlet="pagination"></ng-container>
+</div>
+
+<ng-template #filterOrderTabs>
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" [destroyOnHide]="false" class="nav-tabs">
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>Filters</a>
+      <ng-template ngbNavContent>
+        <app-city-filter (filterUpdated)="filterUpdated($event)"></app-city-filter>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2">
+      <a ngbNavLink>Ordering</a>
+      <ng-template ngbNavContent>
+        <app-cities-ordering (orderingUpdated)="orderingUpdated($event)"></app-cities-ordering>
+      </ng-template>
+    </li>
+    <li ngbNavItem class="ml-auto">
+      <button class="btn btn-link" [disabled]="!filterValid" #applyButton (click)="applyFilters(applyButton)">Apply filters and ordering</button>
+    </li>
+  </ul>
+  <div [ngbNavOutlet]="nav" class="my-4"></div>
+</ng-template>
+
+<ng-template #pagination>
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCities()">
+    </ngb-pagination>
+
+    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCities()">
+      <option *ngFor="let n of [5, 10, 20, 50, 100]" [ngValue]="n">{{ n }} items per page</option>
+    </select>
+  </div>
+</ng-template>

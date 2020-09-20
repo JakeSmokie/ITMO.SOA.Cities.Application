@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/dist/css/bootstrap';
+@import '~bootstrap/dist/css/bootstrap-grid';
+//@import '~bootstrap/scss/bootstrap-reboot';
+
+td, th {
+  vertical-align: middle !important;
+}
+
+select {
+  appearance: none;
+}
+
+select.form-control {
+  &.is-valid, &.is-invalid {
+    //background-position: right calc(20px) center;
+  }
+}

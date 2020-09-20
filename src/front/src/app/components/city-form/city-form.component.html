@@ -1,0 +1,100 @@
+<div id="host" class="p-4 overflow-hidden" *ngIf="shown">
+  <div [ngClass]="{ 'd-none': loading }">
+    <button type="button" class="close mt-n1" aria-label="Close" (click)="shown = false">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="mb-4">
+      <h5>{{ isNew ? 'New city' : ('City: ' + city.name + ' [' + city.id + ']') }}</h5>
+    </div>
+
+    <div class="h-100" style="overflow-x: hidden !important;">
+      <form [formGroup]="form" *ngIf="form">
+        <h6>General</h6>
+
+        <app-form-group title="Name">
+          <input class="form-control" formControlName="name">
+        </app-form-group>
+
+        <app-form-group title="Creation date" *ngIf="!isNew">
+          <div class="form-control">
+            {{ city.creationDate | date:'dd.MM.yyyy' }}
+          </div>
+        </app-form-group>
+
+        <h6>Metrics</h6>
+
+        <app-form-group title="Area">
+          <input class="form-control" formControlName="area" type="number" appNumeric>
+        </app-form-group>
+
+        <app-form-group title="Population">
+          <input class="form-control" formControlName="population" type="number" appNumeric>
+        </app-form-group>
+
+        <app-form-group title="Meters above sea level">
+          <input class="form-control" formControlName="metersAboveSeaLevel" type="number" appNumeric>
+        </app-form-group>
+
+        <app-form-group title="Car code">
+          <input class="form-control" formControlName="carCode" type="number" appNumeric>
+        </app-form-group>
+
+        <app-form-group title="Agglomeration">
+          <input class="form-control" formControlName="agglomeration" type="number">
+        </app-form-group>
+
+        <app-form-group title="Government">
+          <select class="form-control" formControlName="government">
+            <option></option>
+            <option *ngFor="let gov of governments" [value]="gov">{{ gov | lowercase | titlecase }}</option>
+          </select>
+        </app-form-group>
+
+        <h6>Coordinates</h6>
+
+        <app-form-group title="X">
+          <input class="form-control" formControlName="x" type="number">
+        </app-form-group>
+
+        <app-form-group title="Y">
+          <input class="form-control" formControlName="y" type="number" appNumeric>
+        </app-form-group>
+
+        <h6>Governor</h6>
+
+        <app-form-group title="Height">
+          <input class="form-control" formControlName="height" type="number">
+        </app-form-group>
+
+        <app-form-group title="Birthdate">
+          <div class="input-group">
+            <input class="form-control" placeholder="yyyy-mm-dd" name="dp" formControlName="birthday" ngbDatepicker
+                   #d="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                <i-bs name="calendar"></i-bs>
+              </button>
+            </div>
+          </div>
+        </app-form-group>
+
+        <div class="d-flex justify-content-end flex-row mb-4">
+          <button
+            class="btn btn-outline-success"
+            style="min-width: 100px"
+            [disabled]="!this.form.valid"
+            (click)="save()"
+            [ngClass]="{ 'btn-outline-danger': !this.form.valid }"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="w-100 h-100 d-flex justify-content-center align-items-center" [ngClass]="{ 'd-none': !loading }">
+    <div class="spinner-border text-secondary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>

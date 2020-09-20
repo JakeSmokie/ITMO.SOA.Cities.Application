@@ -1,0 +1,77 @@
+<table class="table table-sm table-hover">
+  <thead>
+  <tr>
+    <th scope="col" style="min-width: 200px; width: 200px">Field</th>
+    <th scope="col" style="min-width: 200px; width: 200px">Operation</th>
+    <th scope="col" style="width: 100%;">Value</th>
+    <th scope="col" class="text-right tool-button">
+      <button class="btn btn-sm btn-link text-success tool-button" (click)="addFilter()">
+        Add
+      </button>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let filter of form.controls; index as i" [formGroup]="filter">
+    <td>
+      <select class="form-control form-control-sm" formControlName="fieldIndex" (ngModelChange)="fieldSelected(filter)">
+        <option *ngFor="let field of defaultFields; index as i" [value]="i">{{ field.label }}</option>
+      </select>
+    </td>
+    <td>
+      <select class="form-control form-control-sm" formControlName="operation">
+        <option
+          *ngFor="let op of filterOperationsForType[defaultFields[filter.value.fieldIndex].type]"
+          [value]="op"
+        >
+          {{ filterOperationLabels[op] }}
+        </option>
+      </select>
+    </td>
+    <td>
+      <div [ngSwitch]="defaultFields[filter.value.fieldIndex].type">
+        <div *ngSwitchCase="'number'">
+          <input class="form-control form-control-sm" formControlName="value" type="number">
+        </div>
+        <div *ngSwitchCase="'integer'">
+          <input class="form-control form-control-sm" formControlName="value" type="number" appNumeric>
+        </div>
+        <div *ngSwitchCase="'string'">
+          <input class="form-control form-control-sm" formControlName="value">
+        </div>
+        <div *ngSwitchCase="'select'">
+          <select class="form-control form-control-sm" formControlName="value">
+            <option *ngFor="let option of defaultFields[filter.value.fieldIndex].selectSet" [value]="option">
+              {{ option | lowercase | titlecase }}
+            </option>
+          </select>
+        </div>
+        <div *ngSwitchCase="'date'">
+          <div class="input-group">
+            <input class="form-control form-control-sm" placeholder="yyyy-mm-dd" name="dp" formControlName="value" ngbDatepicker
+                   #d="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-sm btn-outline-secondary" (click)="d.toggle()" type="button">
+                <i-bs name="calendar"></i-bs>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div *ngSwitchDefault>
+          <h5>Something wrong</h5>
+        </div>
+      </div>
+    </td>
+    <td class="text-right">
+      <button class="btn btn-sm btn-link text-danger tool-button" (click)="removeFilter(i)">
+        Remove
+      </button>
+    </td>
+  </tr>
+  <tr *ngIf="form.controls.length === 0">
+    <td colspan="4" class="p-3">
+      <span>No filters applied</span>
+    </td>
+  </tr>
+  </tbody>
+</table>

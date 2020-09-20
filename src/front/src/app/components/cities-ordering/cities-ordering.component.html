@@ -1,0 +1,77 @@
+<div class="row">
+  <div class="col">
+    <table class="table table-sm table-hover text-left">
+      <thead>
+      <tr>
+        <th scope="col" class="pl-4">Available field</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let field of availableFields">
+        <td class="pl-4">
+          {{ field.label }}
+        </td>
+        <td class="text-right">
+          <button class="btn btn-sm btn-link" (click)="selectField(field, true)">
+            <i-bs name="arrow-up"></i-bs>
+          </button>
+          <button class="btn btn-sm btn-link" (click)="selectField(field, false)">
+            <i-bs name="arrow-down"></i-bs>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <table class="table table-sm table-hover text-left">
+      <thead>
+      <tr>
+        <th scope="col" class="pl-4" style="width: 75px;"></th>
+        <th scope="col">Sort by field</th>
+        <th scope="col" class="text-right">Direction</th>
+        <th scope="col" style="width: 20px"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let field of selectedFields; index as i">
+        <td style="width: min-content;">
+          <button class="btn btn-sm btn-link" style="padding-top: 3px;" [disabled]="i === 0" (click)="moveField(field, true)">
+            <i-bs name="caret-up-fill"></i-bs>
+          </button>
+          <button class="btn btn-sm btn-link" [disabled]="i === selectedFields.length - 1" (click)="moveField(field, false)">
+            <i-bs name="caret-down-fill"></i-bs>
+          </button>
+        </td>
+        <td>
+          {{ field.field.label }}
+        </td>
+        <td class="text-right pr-2">
+          <button
+            #buttonAsc
+            class="btn btn-sm btn-link"
+            [ngClass]="field.sort === 'ASC' ? 'text-success' : 'text-secondary'"
+            (click)="selectDirection(field, true, buttonAsc)"
+          >
+            <i-bs name="arrow-up"></i-bs>
+          </button>
+          <button
+            #buttonDesc
+            class="btn btn-sm btn-link"
+            [ngClass]="field.sort === 'DESC' ? 'text-success' : 'text-secondary'"
+            (click)="selectDirection(field, false, buttonDesc)"
+          >
+            <i-bs name="arrow-down"></i-bs>
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-sm btn-link text-danger" (click)="unselectField(field.field)">
+            <i-bs name="trash"></i-bs>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
