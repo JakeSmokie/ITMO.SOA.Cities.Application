@@ -9,6 +9,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CitiesTableComponent implements OnInit {
   @Input() cities: City[];
+  @Input() collectionSize: number;
 
   @Output() editCityClick = new EventEmitter<City>();
   @Output() deleteCityClick = new EventEmitter<City>();

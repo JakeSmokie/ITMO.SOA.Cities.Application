@@ -8,6 +8,7 @@
 
   <app-cities-table
     [cities]="cities"
+    [collectionSize]="collectionSize"
     (deleteCityClick)="deleteCity($event)"
     (editCityClick)="editCity($event)"
   ></app-cities-table>
@@ -37,7 +38,7 @@
 </ng-template>
 
 <ng-template #pagination>
-  <div class="d-flex justify-content-between p-2">
+  <div class="d-flex justify-content-between">
     <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCities()">
     </ngb-pagination>
 
