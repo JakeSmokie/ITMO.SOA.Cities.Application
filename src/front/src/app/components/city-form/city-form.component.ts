@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { governments } from '../../models/government';
 import { CityInput } from '../../models/city-input';
-import { mergeMap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-city-form',
@@ -122,6 +122,12 @@ export class CityFormComponent implements OnInit {
 
     this.cityService.save(this.formToCityInput()).pipe(
       // mergeMap(id => this.cityService.findById(id || this.city.id)),
+      catchError(() => {
+        this.loading = false;
+        this.shown = false;
+
+        return null;
+      }),
     ).subscribe(city => {
       this.citySaved.emit({ city: null, isNew: this.isNew });
 

@@ -17,6 +17,8 @@ import { APIInterceptor } from './interceptors/api.interceptor';
 import { CityService } from './services/city.service';
 import { CityFilterComponent } from './components/city-filter/city-filter.component';
 import { CitiesOrderingComponent } from './components/cities-ordering/cities-ordering.component';
+import { ToastsComponent } from './components/toasts/toasts.component';
+import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { CitiesOrderingComponent } from './components/cities-ordering/cities-ord
     CitiesTableComponent,
     CityFilterComponent,
     CitiesOrderingComponent,
+    ToastsComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +47,11 @@ import { CitiesOrderingComponent } from './components/cities-ordering/cities-ord
     {
       provide: HTTP_INTERCEPTORS,
       useClass: APIInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
       multi: true,
     },
     CityService,

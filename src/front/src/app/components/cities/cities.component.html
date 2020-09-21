@@ -39,7 +39,7 @@
 
 <ng-template #pagination>
   <div class="d-flex justify-content-between">
-    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCities()">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCities()" [maxSize]="10">
     </ngb-pagination>
 
     <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCities()">
