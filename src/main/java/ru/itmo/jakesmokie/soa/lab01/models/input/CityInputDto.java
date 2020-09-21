@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Data
@@ -16,7 +17,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class CityInputDto {
     private long id;
-    @NotNull private String name;
+    @NotNull @NotBlank private String name;
     @NotNull @Min(0) private Integer area;
     @NotNull @Min(0) private Long population;
     private Integer metersAboveSeaLevel;
