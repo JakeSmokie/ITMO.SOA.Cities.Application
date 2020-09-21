@@ -19,22 +19,44 @@ POST {{host}}/api/cities
 Content-Type: application/json
 
 {
-  "name": "abcedef",
-  "area": 1,
-  "population": 10000,
-  "metersAboveSeaLevel": 100,
-  "carCode": 1000,
-  "agglomeration": 15.0,
-  "government": "OLIGARCHY",
+  "name": "{{$uuid}}",
+  "area": {{$randomInt}},
+  "population": {{$randomInt}},
+  "metersAboveSeaLevel": {{$randomInt}},
+  "carCode": {{$randomInt}},
+  "agglomeration": {{$randomInt}},
+  "government": "{{government}}",
   "coordinates": {
-    "x": 273,
-    "y": 100
+    "x": {{x}},
+    "y": {{$randomInt}}
   },
   "governor": {
-    "height": 100,
-    "birthday": "1990-09-19"
+    "height": {{$randomInt}},
+    "birthday": "{{birthday}}"
   }
 }
+
+> {%
+var governments = [
+  'DESPOTISM',
+  'DIARCHY',
+  'NOOCRACY',
+  'OLIGARCHY',
+  'PLUTOCRACY',
+];
+
+var pad = function (str) {
+    return str.length === 1 ? '0' + str : str;
+}
+
+var random = function (max) {
+    return Math.random() * max;
+}
+
+client.global.set('government', governments[~~random(governments.length - 1)]);
+client.global.set('x', random(273 * 2) - 273);
+client.global.set('birthday', ~~(1900 + random(100)) + '-' + pad(~~(1 + random(11)) + '') + '-' + pad((~~(1 + random(27)) + '')));
+%}
 
 ###
 PUT {{host}}/api/cities
