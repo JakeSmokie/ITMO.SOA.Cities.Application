@@ -9,9 +9,7 @@ export type FilterOperation =
   | 'EQUAL'
   | 'MATCH'
   | 'MATCH_START'
-  | 'MATCH_END'
-  | 'IN'
-  | 'NOT_IN';
+  | 'MATCH_END';
 
 export const filterOperationLabels: { [operation: string]: string } = {
   GREATER_THAN: 'Greater than',
@@ -23,8 +21,6 @@ export const filterOperationLabels: { [operation: string]: string } = {
   MATCH: 'Match',
   MATCH_START: 'Match start [%xyz]',
   MATCH_END: 'Match end [xyz%]',
-  IN: 'In',
-  NOT_IN: 'Not in',
 };
 
 export type FilterType =
@@ -39,7 +35,7 @@ export const filterOperationsForType: { [type: string]: FilterOperation[] } = {
   integer: ['EQUAL', 'NOT_EQUAL', 'GREATER_THAN', 'LESS_THAN', 'GREATER_THAN_EQUAL', 'LESS_THAN_EQUAL'],
   string: ['EQUAL', 'NOT_EQUAL', 'MATCH', 'MATCH_START', 'MATCH_END'],
   date: ['EQUAL', 'NOT_EQUAL', 'GREATER_THAN', 'LESS_THAN', 'GREATER_THAN_EQUAL', 'LESS_THAN_EQUAL'],
-  select: ['EQUAL', 'NOT_EQUAL', 'GREATER_THAN', 'LESS_THAN', 'GREATER_THAN_EQUAL', 'LESS_THAN_EQUAL', 'IN', 'NOT_IN'],
+  select: ['EQUAL', 'NOT_EQUAL', 'GREATER_THAN', 'LESS_THAN', 'GREATER_THAN_EQUAL', 'LESS_THAN_EQUAL'],
 };
 
 export interface FilterFieldType {
