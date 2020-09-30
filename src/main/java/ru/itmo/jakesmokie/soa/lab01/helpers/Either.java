@@ -1,5 +1,7 @@
 package ru.itmo.jakesmokie.soa.lab01.helpers;
 
+import lombok.val;
+
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -35,6 +37,14 @@ public final class Either<L, R> {
 
     public <T> Either<L, T> mapRight(Function<? super R, ? extends T> rFunc) {
         return new Either<>(left, right.map(rFunc));
+    }
+
+    public <T> Either<L, T> flatMap(Function<? super R, Either<L, T>> rFunc) {
+        if (right.isPresent()) {
+            return rFunc.apply(right.get());
+        } else {
+            return new Either<>(left, Optional.empty());
+        }
     }
 
     public void apply(Consumer<? super L> lFunc, Consumer<? super R> rFunc) {

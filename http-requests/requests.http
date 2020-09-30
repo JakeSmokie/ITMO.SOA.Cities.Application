@@ -1,6 +1,5 @@
 ###
-GET {{host}}/api/cities?page=0&size=2&sort=name,desc
-#&criteria=coordinates.x,273,LESS_THAN
+GET {{host}}/api/cities/?page=0&size=30&sort=carCode,desc&criteria=government,DESPOTISM,EQUAL
 
 ###
 GET {{host}}/api/cities/car-code/1000/count
@@ -12,7 +11,30 @@ GET {{host}}/api/cities/name/starts-with/a
 GET {{host}}/api/cities/government/greater-than/DESPOTISM
 
 ###
-GET {{host}}/api/cities/2
+GET {{host}}/api/cities/21
+
+
+###
+POST {{host}}/api/cities
+Content-Type: application/json
+
+{
+  "name": null,
+  "area": null,
+  "population": null,
+  "metersAboveSeaLevel": null,
+  "carCode": null,
+  "agglomeration": null,
+  "government": null,
+  "coordinates": {
+    "x": 10000,
+    "y": 10000
+  },
+  "governor": {
+    "height": null,
+    "birthday": null
+  }
+}
 
 ###
 POST {{host}}/api/cities
@@ -69,7 +91,7 @@ PUT {{host}}/api/cities
 Content-Type: application/json
 
 {
-  "id": 1,
+  "id": 26,
   "name": "2",
   "area": 1,
   "population": 1,
@@ -88,4 +110,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{host}}/api/cities/2
+DELETE {{host}}/api/cities/26

@@ -34,7 +34,7 @@ public class CityService implements ICityService {
     }
 
     @Override
-    public Either<String, Long> create(CityInputDto city) {
+    public Either<Object, Long> create(CityInputDto city) {
         val createdCity = MapCityDto(city)
             .id(0L)
             .creationDate(LocalDate.now())
@@ -50,7 +50,7 @@ public class CityService implements ICityService {
     }
 
     @Override
-    public Either<String, Object> update(CityInputDto cityDto) {
+    public Either<Object, Object> update(CityInputDto cityDto) {
         val optionalCity = cityRepository.findById(cityDto.getId());
 
         if (!optionalCity.isPresent()) {
@@ -65,19 +65,19 @@ public class CityService implements ICityService {
 
         try {
             cityRepository.save(updatedCity);
-            return Either.right("");
+            return Either.right("Saved");
         } catch (Exception e) {
             return Either.left(e.getMessage());
         }
     }
 
     @Override
-    public Boolean delete(Long id) {
+    public Either<Object, Object> delete(Long id) {
         try {
             cityRepository.deleteById(id);
-            return true;
+            return Either.right("Deleted");
         } catch (EmptyResultDataAccessException e) {
-            return false;
+            return Either.left("No such city was found");
         }
     }
 

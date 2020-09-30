@@ -13,11 +13,11 @@ import java.util.Optional;
 public interface ICityService {
     Optional<CityDto> get(Long id);
 
-    Either<String, Long> create(CityInputDto city);
+    Either<Object, Long> create(CityInputDto city);
 
-    Either<String, Object> update(CityInputDto city);
+    Either<Object, Object> update(CityInputDto city);
 
-    Boolean delete(Long id);
+    Either<Object, Object> delete(Long id);
 
     Page<CityDto> list(Pageable first, CitySpecification citySpecification);
 

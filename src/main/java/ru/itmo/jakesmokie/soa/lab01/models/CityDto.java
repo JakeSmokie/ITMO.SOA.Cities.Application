@@ -1,6 +1,8 @@
 package ru.itmo.jakesmokie.soa.lab01.models;
 
-public interface CityDto {
+import java.io.Serializable;
+
+public interface CityDto extends Serializable {
     long getId();
     String getName();
     java.time.LocalDate getCreationDate();
