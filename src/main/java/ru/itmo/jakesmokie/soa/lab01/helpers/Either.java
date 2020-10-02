@@ -1,7 +1,5 @@
 package ru.itmo.jakesmokie.soa.lab01.helpers;
 
-import lombok.val;
-
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;

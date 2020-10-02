@@ -1,7 +1,5 @@
 package ru.itmo.jakesmokie.soa.lab01.helpers;
 
-import ru.itmo.jakesmokie.soa.lab01.models.input.GovernmentDto;
-
 import java.util.Optional;
 
 public class Parser {

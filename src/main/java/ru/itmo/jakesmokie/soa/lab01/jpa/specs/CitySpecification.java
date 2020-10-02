@@ -1,6 +1,5 @@
 package ru.itmo.jakesmokie.soa.lab01.jpa.specs;
 
-import org.apache.tomcat.jni.Local;
 import org.springframework.data.jpa.domain.Specification;
 import ru.itmo.jakesmokie.soa.lab01.jpa.models.City;
 import ru.itmo.jakesmokie.soa.lab01.jpa.models.Government;

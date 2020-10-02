@@ -4,8 +4,6 @@ import lombok.SneakyThrows;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import ru.itmo.jakesmokie.soa.lab01.helpers.CitySpecificationParser;
 import ru.itmo.jakesmokie.soa.lab01.helpers.ServletHelper;
