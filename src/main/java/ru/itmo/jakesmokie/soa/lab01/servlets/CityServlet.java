@@ -2,25 +2,39 @@ package ru.itmo.jakesmokie.soa.lab01.servlets;
 
 import lombok.SneakyThrows;
 import lombok.val;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import ru.itmo.jakesmokie.soa.lab01.helpers.CitySpecificationParser;
 import ru.itmo.jakesmokie.soa.lab01.helpers.ServletHelper;
 import ru.itmo.jakesmokie.soa.lab01.models.input.CityInputDto;
 import ru.itmo.jakesmokie.soa.lab01.models.input.GovernmentDto;
 import ru.itmo.jakesmokie.soa.lab01.services.ICityService;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/api/cities/*", loadOnStartup = 1)
+@WebServlet(urlPatterns = "/api/cities/*")
 public class CityServlet extends HttpServlet {
-    private final ICityService cityService;
-    private final ServletHelper servletHelper;
+    @Autowired ICityService cityService;
+    @Autowired ServletHelper servletHelper;
 
-    public CityServlet(ICityService cityService, ServletHelper servletHelper) {
-        this.cityService = cityService;
-        this.servletHelper = servletHelper;
+    protected AutowireCapableBeanFactory ctx;
+
+    public CityServlet() {
+    }
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        val context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+        ctx = context.getAutowireCapableBeanFactory();
+        ctx.autowireBean(this);
     }
 
     @Override
