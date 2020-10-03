@@ -54,7 +54,7 @@ export class CityService {
     if (city.id === 0) {
       return this.http.post<number>(`${baseUrl}`, city);
     } else {
-      return this.http.put<number>(`${baseUrl}`, city);
+      return this.http.put<number>(`${baseUrl}/${encodeURIComponent(city.id)}`, city);
     }
   }
 

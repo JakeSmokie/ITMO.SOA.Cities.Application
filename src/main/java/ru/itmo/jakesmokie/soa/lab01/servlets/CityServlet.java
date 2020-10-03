@@ -89,9 +89,16 @@ public class CityServlet extends HttpServlet {
     @Override
     @SneakyThrows
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) {
+        val id = servletHelper.getLongPathVariable("/{id}").orElse(null);
+
+        if (id == null) {
+            servletHelper.return400("Invalid format of id path param");
+            return;
+        }
+
         servletHelper.deserializeBody(CityInputDto.class)
             .flatMap(servletHelper::validateEntity)
-            .flatMap(cityService::update)
+            .flatMap(city -> cityService.update(id, city))
             .apply(servletHelper::return400, servletHelper::returnOK);
     }
 

@@ -50,8 +50,8 @@ public class CityService implements ICityService {
     }
 
     @Override
-    public Either<Object, Object> update(CityInputDto cityDto) {
-        val optionalCity = cityRepository.findById(cityDto.getId());
+    public Either<Object, Object> update(Long id, CityInputDto cityDto) {
+        val optionalCity = cityRepository.findById(id);
 
         if (!optionalCity.isPresent()) {
             return Either.left("City with that id does not exist");

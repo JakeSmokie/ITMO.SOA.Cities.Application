@@ -15,7 +15,7 @@ public interface ICityService {
 
     Either<Object, Long> create(CityInputDto city);
 
-    Either<Object, Object> update(CityInputDto city);
+    Either<Object, Object> update(Long id, CityInputDto city);
 
     Either<Object, Object> delete(Long id);
 
