@@ -60,6 +60,7 @@ public class ServletHelper {
 
         resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
         resp.getWriter().print(objectMapper.writeValueAsString(error));
     }
 
@@ -79,6 +80,7 @@ public class ServletHelper {
         }
 
         resp.setStatus(HttpServletResponse.SC_OK);
+        resp.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json");
         resp.getWriter().print(objectMapper.writeValueAsString(entity));
     }
