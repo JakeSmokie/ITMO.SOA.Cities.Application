@@ -112,6 +112,6 @@ public class CityServlet extends HttpServlet {
             return;
         }
 
-        cityService.delete(id).apply(servletHelper::return400, servletHelper::returnOK);
+        cityService.delete(id).apply(t -> servletHelper.return404(), servletHelper::returnOK);
     }
 }
