@@ -52,13 +52,13 @@ export class CityService {
 
   save(city: CityInput) {
     if (city.id === 0) {
-      return this.http.post<number>(`${baseUrl}`, city);
+      return this.http.put(`${baseUrl}`, city, { responseType: 'text' });
     } else {
-      return this.http.put<number>(`${baseUrl}/${encodeURIComponent(city.id)}`, city);
+      return this.http.patch(`${baseUrl}/${encodeURIComponent(city.id)}`, city, { responseType: 'text' });
     }
   }
 
   delete({ id }) {
-    return this.http.delete(`${baseUrl}/${encodeURIComponent(id)}`);
+    return this.http.delete(`${baseUrl}/${encodeURIComponent(id)}`, { responseType: 'text' });
   }
 }

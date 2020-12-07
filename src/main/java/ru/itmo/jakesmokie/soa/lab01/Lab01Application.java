@@ -2,13 +2,10 @@ package ru.itmo.jakesmokie.soa.lab01;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import ru.itmo.jakesmokie.soa.lab01.servlets.CityServlet;
 import th.co.geniustree.springdata.jpa.repository.support.JpaSpecificationExecutorWithProjectionImpl;
 
 @SpringBootApplication
-@ServletComponentScan(basePackageClasses = {CityServlet.class})
 @EnableJpaRepositories(repositoryBaseClass = JpaSpecificationExecutorWithProjectionImpl.class)
 public class Lab01Application {
 

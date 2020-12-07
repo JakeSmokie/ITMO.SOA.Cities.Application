@@ -58,7 +58,7 @@ ___CSS_LOADER_EXPORT___.push([module.i, "@charset \"UTF-8\";\n/* You can add glo
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Jake\IdeaProjects\lab01\src\front\src\styles.scss */"+EN/");
+module.exports = __webpack_require__(/*! C:\Users\Jake\IdeaProjects\soa.lab01\src\front\src\styles.scss */"+EN/");
 
 
 /***/ }),

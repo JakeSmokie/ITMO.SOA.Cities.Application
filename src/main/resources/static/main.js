@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Jake\IdeaProjects\lab01\src\front\src\main.ts */"zUnb");
+module.exports = __webpack_require__(/*! C:\Users\Jake\IdeaProjects\soa.lab01\src\front\src\main.ts */"zUnb");
 
 
 /***/ }),
@@ -1516,7 +1516,9 @@ class HttpErrorInterceptor {
     }
     intercept(request, next) {
         return next.handle(request)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["retry"])(1), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])((error) => {
+            .pipe(
+        // retry(1),
+        Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])((error) => {
             console.log(error);
             let errorMessage = '';
             if (error.error instanceof ErrorEvent) {
@@ -1845,14 +1847,14 @@ class CityService {
     }
     save(city) {
         if (city.id === 0) {
-            return this.http.post(`${baseUrl}`, city);
+            return this.http.put(`${baseUrl}`, city, { responseType: 'text' });
         }
         else {
-            return this.http.put(`${baseUrl}`, city);
+            return this.http.patch(`${baseUrl}/${encodeURIComponent(city.id)}`, city, { responseType: 'text' });
         }
     }
     delete({ id }) {
-        return this.http.delete(`${baseUrl}/${encodeURIComponent(id)}`);
+        return this.http.delete(`${baseUrl}/${encodeURIComponent(id)}`, { responseType: 'text' });
     }
 }
 CityService.ɵfac = function CityService_Factory(t) { return new (t || CityService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"])); };
@@ -1883,7 +1885,7 @@ __webpack_require__.r(__webpack_exports__);
 class APIInterceptor {
     intercept(req, next) {
         if (window.location.origin === 'http://localhost:4200') {
-            req = req.clone({ url: `http://localhost:8080/${req.url}` });
+            req = req.clone({ url: `https://localhost:8080/${req.url}` });
         }
         return next.handle(req);
     }
