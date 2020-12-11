@@ -6,6 +6,7 @@
 <!--  </div>-->
 <!--  <ng-container *ngTemplateOutlet="pagination"></ng-container>-->
 
+  <app-city-depart (departed)="departed()"></app-city-depart>
   <app-cities-table
     [cities]="cities"
     [collectionSize]="collectionSize"

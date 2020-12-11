@@ -73,4 +73,8 @@ export class CitiesComponent implements OnInit {
   orderingUpdated(ordering: FieldSort[]) {
     this.ordering = ordering;
   }
+
+  departed() {
+    this.refreshCities();
+  }
 }

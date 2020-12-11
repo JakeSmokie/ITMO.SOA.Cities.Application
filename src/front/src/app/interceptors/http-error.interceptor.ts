@@ -25,8 +25,11 @@ export class HttpErrorInterceptor implements HttpInterceptor {
             errorMessage = `Message: ${error.error instanceof Object ? JSON.stringify(error.error.errors, undefined, 2) : error.error}`;
           }
 
-          this.toast.show(`Error Code: ${error.status}`, errorMessage);
-          return throwError(errorMessage);
+          if (error.status !== 404) {
+            this.toast.show(`Error Code: ${error.status}`, JSON.stringify(error, undefined, 2));
+          }
+
+          return throwError(error);
         }),
       );
   }

@@ -1,0 +1,19 @@
+<div class="d-flex flex-row py-3 align-items-center">
+  <input [(ngModel)]="firstId" style="max-width: 100px;" class="form-control mr-3" min="0" appNumeric placeholder="First Id">
+  <input [(ngModel)]="secondId" style="max-width: 100px;" class="form-control mr-3" min="0" appNumeric placeholder="Second Id">
+  <input [(ngModel)]="thirdId" style="max-width: 100px;" class="form-control mr-3" min="0" appNumeric placeholder="Third Id">
+  <button class="btn btn-outline-primary" [disabled]="countDisabled()" (click)="count()">Count population</button>
+
+  <div class="ml-3" *ngIf="population !== -1 && population">Count: {{ population }}</div>
+  <div class="ml-3" *ngIf="population === -1">Invalid city id supplied</div>
+</div>
+
+<div class="d-flex flex-row pb-3 align-items-center">
+  <input [(ngModel)]="departFirstId" style="max-width: 100px;" class="form-control mr-3" min="0" appNumeric placeholder="First Id">
+  <input [(ngModel)]="departSecondId" style="max-width: 100px;" class="form-control mr-3" min="0" appNumeric placeholder="Second Id">
+
+  <button class="btn btn-outline-primary" [disabled]="deportDisabled()" (click)="deport()">Deport population</button>
+
+  <div class="ml-3" *ngIf="departSuccess === true">Success!</div>
+  <div class="ml-3" *ngIf="departSuccess === false">Invalid city id supplied</div>
+</div>
