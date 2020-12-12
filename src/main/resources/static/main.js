@@ -511,11 +511,14 @@ function CitiesOrderingComponent_tr_21_Template(rf, ctx) { if (rf & 1) {
 } }
 class CitiesOrderingComponent {
     constructor() {
-        this.availableFields = [..._models_filters__WEBPACK_IMPORTED_MODULE_1__["defaultFields"]];
         this.selectedFields = [];
         this.orderingUpdated = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
     }
     ngOnInit() {
+        const [first, ...rest] = _models_filters__WEBPACK_IMPORTED_MODULE_1__["defaultFields"];
+        this.availableFields = rest;
+        this.selectedFields = [{ field: first, sort: "DESC" }];
+        this.notifyThatOrderingUpdated();
     }
     selectField(field, ascending) {
         this.selectedFields.push({ field, sort: ascending ? 'ASC' : 'DESC' });
@@ -827,10 +830,10 @@ class CitiesComponent {
         this.active = 1;
         this.collectionSize = 0;
         this.page = 1;
-        this.pageSize = 5;
+        this.pageSize = 10;
         this.filterValid = true;
         this.criteria = [];
-        this.ordering = [];
+        this.ordering = [{ field: 'id', sort: 'DESC' }];
     }
     ngOnInit() {
         this.refreshCities();

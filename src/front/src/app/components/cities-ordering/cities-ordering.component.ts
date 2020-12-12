@@ -7,7 +7,7 @@ import { defaultFields, FieldSort, FilterFieldType, SortDirection } from '../../
   styleUrls: ['./cities-ordering.component.scss'],
 })
 export class CitiesOrderingComponent implements OnInit {
-  availableFields: FilterFieldType[] = [...defaultFields];
+  availableFields: FilterFieldType[];
   selectedFields: { field: FilterFieldType, sort: SortDirection }[] = [];
 
   @Output() orderingUpdated = new EventEmitter<FieldSort[]>();
@@ -16,6 +16,11 @@ export class CitiesOrderingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const [first, ...rest] = defaultFields;
+    this.availableFields = rest;
+    this.selectedFields = [{ field: first, sort: "DESC" }];
+
+    this.notifyThatOrderingUpdated();
   }
 
   selectField(field: FilterFieldType, ascending: boolean) {

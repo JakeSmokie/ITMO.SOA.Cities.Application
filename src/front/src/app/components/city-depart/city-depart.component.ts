@@ -19,7 +19,7 @@ export class CityDepartComponent implements OnInit {
   departSecondId: string;
   departSuccess: boolean;
 
-  @Output departed = new EventEmitter();
+  @Output() departed = new EventEmitter();
 
   constructor(
     private departService: DepartService

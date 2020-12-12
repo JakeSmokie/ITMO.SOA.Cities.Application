@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { CityService } from '../../services/city.service';
-import { City } from '../../models/city';
-import { CityFormComponent } from '../city-form/city-form.component';
-import { FieldSort, SearchCriterion } from '../../models/filters';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {CityService} from '../../services/city.service';
+import {City} from '../../models/city';
+import {CityFormComponent} from '../city-form/city-form.component';
+import {FieldSort, SearchCriterion} from '../../models/filters';
 
 @Component({
   selector: 'app-cities',
@@ -17,11 +17,11 @@ export class CitiesComponent implements OnInit {
   cities: City[];
   collectionSize = 0;
   page = 1;
-  pageSize = 5;
+  pageSize = 10;
 
   filterValid = true;
   criteria: SearchCriterion[] = [];
-  ordering: FieldSort[] = [];
+  ordering: FieldSort[] = [{field: 'id', sort: 'DESC'}];
 
   constructor(
     private cityService: CityService,
@@ -56,7 +56,7 @@ export class CitiesComponent implements OnInit {
     });
   }
 
-  citySaved({ city, isNew }) {
+  citySaved({city, isNew}) {
     this.refreshCities();
   }
 
