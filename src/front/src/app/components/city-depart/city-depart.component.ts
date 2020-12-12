@@ -44,7 +44,8 @@ export class CityDepartComponent implements OnInit {
 
   deportDisabled() {
     return !+this.departFirstId || !+this.departSecondId
-      || +this.departFirstId < 0 || +this.departSecondId < 0;
+      || +this.departFirstId < 0 || +this.departSecondId < 0
+      || +this.departFirstId == +this.departSecondId;
   }
 
   deport() {
