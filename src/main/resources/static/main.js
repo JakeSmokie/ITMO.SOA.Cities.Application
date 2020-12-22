@@ -995,7 +995,8 @@ class CityDepartComponent {
     }
     deportDisabled() {
         return !+this.departFirstId || !+this.departSecondId
-            || +this.departFirstId < 0 || +this.departSecondId < 0;
+            || +this.departFirstId < 0 || +this.departSecondId < 0
+            || +this.departFirstId == +this.departSecondId;
     }
     deport() {
         this.departService.depart(+this.departFirstId, +this.departSecondId)
@@ -1048,7 +1049,7 @@ CityDepartComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefi
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", ctx.countDisabled());
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.population !== -1 && ctx.population);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.population !== -1 && ctx.population || ctx.population === 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.population === -1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);

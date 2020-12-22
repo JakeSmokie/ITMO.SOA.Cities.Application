@@ -4,7 +4,7 @@
   <input [(ngModel)]="thirdId" style="max-width: 100px;" class="form-control mr-3" min="0" appNumeric placeholder="Third Id">
   <button class="btn btn-outline-primary" [disabled]="countDisabled()" (click)="count()">Count population</button>
 
-  <div class="ml-3" *ngIf="population !== -1 && population">Count: {{ population }}</div>
+  <div class="ml-3" *ngIf="population !== -1 && population || population === 0">Count: {{ population }}</div>
   <div class="ml-3" *ngIf="population === -1">Invalid city id supplied</div>
 </div>
 
