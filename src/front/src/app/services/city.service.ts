@@ -13,7 +13,7 @@ export interface CityListQuery {
   ordering: FieldSort[];
 }
 
-const baseUrl = 'https://localhost:50002/cities/api/cities';
+const baseUrl = 'https://localhost:50301/cities/api/cities';
 
 const convertDatesForCity = city => ({
   ...city,

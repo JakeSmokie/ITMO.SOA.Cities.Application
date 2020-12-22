@@ -1092,7 +1092,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const baseUrl = 'https://localhost:50101/cities/api/cities';
+const baseUrl = 'https://localhost:50301/depart/api/cities';
 class DepartService {
     constructor(http) {
         this.http = http;
@@ -2036,7 +2036,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const baseUrl = 'https://localhost:50002/cities/api/cities';
+const baseUrl = 'https://localhost:50301/cities/api/cities';
 const convertDatesForCity = city => (Object.assign(Object.assign({}, city), { creationDate: city.creationDate && new Date(city.creationDate), governor: city.governor && Object.assign(Object.assign({}, city.governor), { birthday: city.governor.birthday && new Date(city.governor.birthday) }) }));
 class CityService {
     constructor(http) {

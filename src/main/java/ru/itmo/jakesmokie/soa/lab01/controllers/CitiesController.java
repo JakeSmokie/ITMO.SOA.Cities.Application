@@ -62,8 +62,16 @@ public class CitiesController {
         );
     }
 
-    @PatchMapping("/{id}")
+    @PostMapping("/{id}")
     public ResponseEntity<?> update(@RequestBody @Valid CityInputDto city, @PathVariable Long id) {
+        return cityService.update(id, city).map(
+            error -> ResponseEntity.badRequest().body(error),
+            ResponseEntity::ok
+        );
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> updatePatch(@RequestBody @Valid CityInputDto city, @PathVariable Long id) {
         return cityService.update(id, city).map(
             error -> ResponseEntity.badRequest().body(error),
             ResponseEntity::ok
